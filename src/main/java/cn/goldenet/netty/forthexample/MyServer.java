@@ -25,14 +25,3 @@ public class MyServer {
         }
     }
 }
-
-class Demo {
-    public static void main(String[] args) {
-        double unitprice = 123.3;// double除以100精度不准
-        double cost;
-        double price;
-        price = unitprice / 100;
-        cost = 123 * price;
-        System.out.println("用户花费：" + cost + "-单元价格：" + price);
-    }
-}
