@@ -11,6 +11,10 @@ service StudentService {
     }
     rpc GetStudentsByAge (StudentRequest) returns (stream StudentResponse) {
     }
+
+    rpc GetStudentsWrapperByAges (stream StudentRequest) returns (stream StudentResponseList) {
+
+    }
 }
 
 message MyRequest {
@@ -29,4 +33,8 @@ message StudentResponse {
     string name = 1;
     int32 age = 2;
     string city = 3;
+}
+
+message StudentResponseList {
+    repeated StudentResponse studentResponse = 1;
 }
