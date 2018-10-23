@@ -22,10 +22,12 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
         comments = "Source: Student.proto")
 public final class StudentServiceGrpc {
 
-  public static final String SERVICE_NAME = "cn.goldenet.proto.StudentService";
   private static final int METHODID_GET_REAL_NAME_BY_USER_NAME = 0;
+
+    public static final String SERVICE_NAME = "cn.goldenet.proto.StudentService";
   private static final int METHODID_GET_STUDENTS_BY_AGE = 1;
   private static final int METHODID_GET_STUDENTS_WRAPPER_BY_AGES = 2;
+    private static final int METHODID_BI_TALK = 3;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<cn.goldenet.proto.MyRequest,
           cn.goldenet.proto.MyResponse> getGetRealNameByUserNameMethod;
@@ -33,10 +35,19 @@ public final class StudentServiceGrpc {
           cn.goldenet.proto.StudentResponse> getGetStudentsByAgeMethod;
   private static volatile io.grpc.MethodDescriptor<cn.goldenet.proto.StudentRequest,
           cn.goldenet.proto.StudentResponseList> getGetStudentsWrapperByAgesMethod;
+    private static volatile io.grpc.MethodDescriptor<cn.goldenet.proto.StreamRequest,
+            cn.goldenet.proto.StreamResponse> getBiTalkMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
-  private StudentServiceGrpc() {
-  }
+    /**
+     * Creates a new async stub that supports all call types for the service
+     */
+    public static StudentServiceStub newStub(io.grpc.Channel channel) {
+        return new StudentServiceStub(channel);
+    }
+
+    private StudentServiceGrpc() {
+    }
 
   @io.grpc.stub.annotations.RpcMethod(
           fullMethodName = SERVICE_NAME + '/' + "GetRealNameByUserName",
@@ -64,7 +75,7 @@ public final class StudentServiceGrpc {
         }
       }
     }
-    return getGetRealNameByUserNameMethod;
+      return getGetRealNameByUserNameMethod;
   }
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -93,14 +104,14 @@ public final class StudentServiceGrpc {
         }
       }
     }
-    return getGetStudentsByAgeMethod;
+      return getGetStudentsByAgeMethod;
   }
 
   @io.grpc.stub.annotations.RpcMethod(
           fullMethodName = SERVICE_NAME + '/' + "GetStudentsWrapperByAges",
           requestType = cn.goldenet.proto.StudentRequest.class,
           responseType = cn.goldenet.proto.StudentResponseList.class,
-          methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+          methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<cn.goldenet.proto.StudentRequest,
           cn.goldenet.proto.StudentResponseList> getGetStudentsWrapperByAgesMethod() {
     io.grpc.MethodDescriptor<cn.goldenet.proto.StudentRequest, cn.goldenet.proto.StudentResponseList> getGetStudentsWrapperByAgesMethod;
@@ -109,7 +120,7 @@ public final class StudentServiceGrpc {
         if ((getGetStudentsWrapperByAgesMethod = StudentServiceGrpc.getGetStudentsWrapperByAgesMethod) == null) {
           StudentServiceGrpc.getGetStudentsWrapperByAgesMethod = getGetStudentsWrapperByAgesMethod =
                   io.grpc.MethodDescriptor.<cn.goldenet.proto.StudentRequest, cn.goldenet.proto.StudentResponseList>newBuilder()
-                          .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+                          .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
                           .setFullMethodName(generateFullMethodName(
                                   "cn.goldenet.proto.StudentService", "GetStudentsWrapperByAges"))
                           .setSampledToLocalTracing(true)
@@ -122,14 +133,36 @@ public final class StudentServiceGrpc {
         }
       }
     }
-    return getGetStudentsWrapperByAgesMethod;
+      return getGetStudentsWrapperByAgesMethod;
   }
 
-  /**
-   * Creates a new async stub that supports all call types for the service
-   */
-  public static StudentServiceStub newStub(io.grpc.Channel channel) {
-    return new StudentServiceStub(channel);
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "BiTalk",
+            requestType = cn.goldenet.proto.StreamRequest.class,
+            responseType = cn.goldenet.proto.StreamResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+    public static io.grpc.MethodDescriptor<cn.goldenet.proto.StreamRequest,
+            cn.goldenet.proto.StreamResponse> getBiTalkMethod() {
+        io.grpc.MethodDescriptor<cn.goldenet.proto.StreamRequest, cn.goldenet.proto.StreamResponse> getBiTalkMethod;
+        if ((getBiTalkMethod = StudentServiceGrpc.getBiTalkMethod) == null) {
+            synchronized (StudentServiceGrpc.class) {
+                if ((getBiTalkMethod = StudentServiceGrpc.getBiTalkMethod) == null) {
+                    StudentServiceGrpc.getBiTalkMethod = getBiTalkMethod =
+                            io.grpc.MethodDescriptor.<cn.goldenet.proto.StreamRequest, cn.goldenet.proto.StreamResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+                                    .setFullMethodName(generateFullMethodName(
+                                            "cn.goldenet.proto.StudentService", "BiTalk"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            cn.goldenet.proto.StreamRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            cn.goldenet.proto.StreamResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("BiTalk"))
+                                    .build();
+                }
+            }
+        }
+        return getBiTalkMethod;
   }
 
   /**
@@ -159,6 +192,7 @@ public final class StudentServiceGrpc {
                   .addMethod(getGetRealNameByUserNameMethod())
                   .addMethod(getGetStudentsByAgeMethod())
                   .addMethod(getGetStudentsWrapperByAgesMethod())
+                  .addMethod(getBiTalkMethod())
                   .build();
         }
       }
@@ -191,8 +225,15 @@ public final class StudentServiceGrpc {
       return asyncUnimplementedStreamingCall(getGetStudentsWrapperByAgesMethod(), responseObserver);
     }
 
-    @java.lang.Override
-    public final io.grpc.ServerServiceDefinition bindService() {
+      /**
+       */
+      public io.grpc.stub.StreamObserver<cn.goldenet.proto.StreamRequest> biTalk(
+              io.grpc.stub.StreamObserver<cn.goldenet.proto.StreamResponse> responseObserver) {
+          return asyncUnimplementedStreamingCall(getBiTalkMethod(), responseObserver);
+      }
+
+      @java.lang.Override
+      public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
               .addMethod(
                       getGetRealNameByUserNameMethod(),
@@ -210,11 +251,18 @@ public final class StudentServiceGrpc {
                                       this, METHODID_GET_STUDENTS_BY_AGE)))
               .addMethod(
                       getGetStudentsWrapperByAgesMethod(),
-                      asyncBidiStreamingCall(
+                      asyncClientStreamingCall(
                               new MethodHandlers<
                                       cn.goldenet.proto.StudentRequest,
                                       cn.goldenet.proto.StudentResponseList>(
                                       this, METHODID_GET_STUDENTS_WRAPPER_BY_AGES)))
+              .addMethod(
+                      getBiTalkMethod(),
+                      asyncBidiStreamingCall(
+                              new MethodHandlers<
+                                      cn.goldenet.proto.StreamRequest,
+                                      cn.goldenet.proto.StreamResponse>(
+                                      this, METHODID_BI_TALK)))
               .build();
     }
   }
@@ -257,8 +305,16 @@ public final class StudentServiceGrpc {
      */
     public io.grpc.stub.StreamObserver<cn.goldenet.proto.StudentRequest> getStudentsWrapperByAges(
             io.grpc.stub.StreamObserver<cn.goldenet.proto.StudentResponseList> responseObserver) {
+        return asyncClientStreamingCall(
+                getChannel().newCall(getGetStudentsWrapperByAgesMethod(), getCallOptions()), responseObserver);
+    }
+
+      /**
+       */
+      public io.grpc.stub.StreamObserver<cn.goldenet.proto.StreamRequest> biTalk(
+              io.grpc.stub.StreamObserver<cn.goldenet.proto.StreamResponse> responseObserver) {
       return asyncBidiStreamingCall(
-              getChannel().newCall(getGetStudentsWrapperByAgesMethod(), getCallOptions()), responseObserver);
+              getChannel().newCall(getBiTalkMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -361,6 +417,9 @@ public final class StudentServiceGrpc {
         case METHODID_GET_STUDENTS_WRAPPER_BY_AGES:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getStudentsWrapperByAges(
                   (io.grpc.stub.StreamObserver<cn.goldenet.proto.StudentResponseList>) responseObserver);
+          case METHODID_BI_TALK:
+              return (io.grpc.stub.StreamObserver<Req>) serviceImpl.biTalk(
+                      (io.grpc.stub.StreamObserver<cn.goldenet.proto.StreamResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -369,8 +428,7 @@ public final class StudentServiceGrpc {
 
   private static abstract class StudentServiceBaseDescriptorSupplier
           implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    StudentServiceBaseDescriptorSupplier() {
-    }
+      StudentServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -385,8 +443,7 @@ public final class StudentServiceGrpc {
 
   private static final class StudentServiceFileDescriptorSupplier
           extends StudentServiceBaseDescriptorSupplier {
-    StudentServiceFileDescriptorSupplier() {
-    }
+      StudentServiceFileDescriptorSupplier() {}
   }
 
   private static final class StudentServiceMethodDescriptorSupplier

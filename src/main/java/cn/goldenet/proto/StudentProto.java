@@ -29,6 +29,16 @@ public final class StudentProto {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_cn_goldenet_proto_StudentResponseList_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_cn_goldenet_proto_StreamRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_cn_goldenet_proto_StreamRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_cn_goldenet_proto_StreamResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_cn_goldenet_proto_StreamResponse_fieldAccessorTable;
     private static com.google.protobuf.Descriptors.FileDescriptor
             descriptor;
 
@@ -40,16 +50,20 @@ public final class StudentProto {
                         "ge\030\001 \001(\005\":\n\017StudentResponse\022\014\n\004name\030\001 \001(" +
                         "\t\022\013\n\003age\030\002 \001(\005\022\014\n\004city\030\003 \001(\t\"R\n\023StudentR" +
                         "esponseList\022;\n\017studentResponse\030\001 \003(\0132\".c" +
-                        "n.goldenet.proto.StudentResponse2\264\002\n\016Stu" +
+                        "n.goldenet.proto.StudentResponse\"%\n\rStre" +
+                        "amRequest\022\024\n\014request_info\030\001 \001(\t\"\'\n\016Strea" +
+                        "mResponse\022\025\n\rresponse_info\030\001 \001(\t2\207\003\n\016Stu" +
                         "dentService\022V\n\025GetRealNameByUserName\022\034.c" +
                         "n.goldenet.proto.MyRequest\032\035.cn.goldenet" +
                         ".proto.MyResponse\"\000\022]\n\020GetStudentsByAge\022" +
                         "!.cn.goldenet.proto.StudentRequest\032\".cn." +
-                        "goldenet.proto.StudentResponse\"\0000\001\022k\n\030Ge" +
+                        "goldenet.proto.StudentResponse\"\0000\001\022i\n\030Ge" +
                         "tStudentsWrapperByAges\022!.cn.goldenet.pro" +
                         "to.StudentRequest\032&.cn.goldenet.proto.St" +
-                        "udentResponseList\"\000(\0010\001B#\n\021cn.goldenet.p" +
-                        "rotoB\014StudentProtoP\001b\006proto3"
+                        "udentResponseList\"\000(\001\022S\n\006BiTalk\022 .cn.gol" +
+                        "denet.proto.StreamRequest\032!.cn.goldenet." +
+                        "proto.StreamResponse\"\000(\0010\001B#\n\021cn.goldene" +
+                        "t.protoB\014StudentProtoP\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -93,6 +107,18 @@ public final class StudentProto {
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_cn_goldenet_proto_StudentResponseList_descriptor,
                 new java.lang.String[]{"StudentResponse",});
+        internal_static_cn_goldenet_proto_StreamRequest_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_cn_goldenet_proto_StreamRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_cn_goldenet_proto_StreamRequest_descriptor,
+                new java.lang.String[]{"RequestInfo",});
+        internal_static_cn_goldenet_proto_StreamResponse_descriptor =
+                getDescriptor().getMessageTypes().get(6);
+        internal_static_cn_goldenet_proto_StreamResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_cn_goldenet_proto_StreamResponse_descriptor,
+                new java.lang.String[]{"ResponseInfo",});
     }
 
     private StudentProto() {

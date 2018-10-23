@@ -546,7 +546,7 @@ public final class MyRequest extends
 
 
         // @@protoc_insertion_point(builder_scope:cn.goldenet.proto.MyRequest)
-    }
+  }
 
 }
 

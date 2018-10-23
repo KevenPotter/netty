@@ -776,12 +776,12 @@ public final class StudentResponseList extends
 
         public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:cn.goldenet.proto.StudentResponseList)
+      return super.mergeUnknownFields(unknownFields);
     }
+
+
+    // @@protoc_insertion_point(builder_scope:cn.goldenet.proto.StudentResponseList)
+  }
 
 }
 
