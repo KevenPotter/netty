@@ -1,7 +1,11 @@
 package cn.goldenet.nio;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.spi.SelectorProvider;
 
 public class NioTest12 {
     public static void main(String[] args) throws IOException {
@@ -13,5 +17,12 @@ public class NioTest12 {
         ports[4] = 5004;
         // 创建Selector-常见方法
         Selector selector = Selector.open();
+        for (int i = 0; i < ports.length; ++i) {
+            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+            serverSocketChannel.configureBlocking(false);
+            ServerSocket serverSocket = serverSocketChannel.socket();
+            InetSocketAddress address = new InetSocketAddress(ports[i]);
+            serverSocket.bind(address);
+        }
     }
 }
