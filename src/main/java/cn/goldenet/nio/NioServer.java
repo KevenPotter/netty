@@ -50,15 +50,30 @@ public class NioServer {
                             int count = client.read(readBuffer);
                             if (count > 0) {
                                 readBuffer.flip();
-                                Charset charset = Charset.forName("utf-8");
+                                Charset charset = Charset.forName("UTF-8");
                                 String receivedMessage = String.valueOf(charset.decode(readBuffer).array());
                                 System.out.println(client + ": " + receivedMessage);
+                                String senderKey = null;
+                                for (Map.Entry<String, SocketChannel> entry : clientMap.entrySet()) {
+                                    if (client == entry.getValue()) {
+                                        senderKey = entry.getKey();
+                                        break;
+                                    }
+                                }
+                                for (Map.Entry<String, SocketChannel> entry : clientMap.entrySet()) {
+                                    SocketChannel value = entry.getValue();
+                                    ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
+                                    writeBuffer.put((senderKey + ": " + receivedMessage).getBytes());
+                                    writeBuffer.flip();
+                                    value.write(writeBuffer);
+                                }
                             }
                         }
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 });
+                selectionKeys.clear();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
