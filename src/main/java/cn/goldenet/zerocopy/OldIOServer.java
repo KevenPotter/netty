@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class OldServer {
+public class OldIOServer {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(8899);
         while (true) {
