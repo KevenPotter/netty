@@ -19,7 +19,7 @@ public class NewIOServer {
             SocketChannel socketChannel = serverSocketChannel.accept();
             socketChannel.configureBlocking(true);
             int readCount = 0;
-            if (-1 != readCount) {
+            while (-1 != readCount) {
                 try {
                     readCount = socketChannel.read(byteBuffer);
                 } catch (Exception ex) {
